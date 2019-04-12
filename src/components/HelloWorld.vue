@@ -9,11 +9,11 @@
       <span>タスク</span>
       <textarea v-model="text"></textarea>
     </div>
-    <button @click="ADD_TASK(`タスク：${text}　期限：${date}`); CHANGE_INPUT({date: '', text: ''})">{{button}}</button>
+    <button @click="setItems(text, date); CHANGE_INPUT({date: '', text: ''})">{{button}}</button>
     <StringComp></StringComp>
     <div>
-      <div v-for="item in items">
-        {{item.title}}
+      <div v-for="item in todos">
+        {{`タスク：${item.text}　期限：${item.date}`}}
       </div>
     </div>
   </div>
@@ -31,13 +31,21 @@ export default {
   data () {
     return {
       button: '登録',
+      todos: []
     }
+  },
+  mounted () {
+    this.todos = JSON.parse(localStorage.getItem('todos')) || [];
   },
   methods: {
     ...mapActions([
       types.ADD_TASK,
       types.CHANGE_INPUT,
     ]),
+    setItems(text, date) {
+      this.todos.push({text, date});
+      localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
   },
 
   components: {

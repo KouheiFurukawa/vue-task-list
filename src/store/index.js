@@ -21,11 +21,7 @@ export default new Vuex.Store({
     Form
   },
   state: {
-    items: [
-      {is_do: false, title: 'タスク1'},
-      {is_do: true, title: 'タスク2'},
-      {is_do: false, title: 'タスク3'}
-    ],
+    items: [],
     inputTitle: {date: '', text: ''},
   },
   actions: {
