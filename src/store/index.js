@@ -23,6 +23,7 @@ export default new Vuex.Store({
   state: {
     items: [],
     inputTitle: {date: '', text: ''},
+    todos: [],
   },
   actions: {
     [types.ADD_TASK] ({ commit }, title) {

@@ -8,5 +8,19 @@
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script>
+      import firebase from 'firebase'
+      // Initialize Firebase
+      const config = {
+        apiKey: "AIzaSyBXEzRsVHyEzfquJb8riDoOjjBFsfzgelA",
+        authDomain: "vueapp-95ce4.firebaseapp.com",
+        databaseURL: "https://vueapp-95ce4.firebaseio.com",
+        projectId: "vueapp-95ce4",
+        storageBucket: "vueapp-95ce4.appspot.com",
+        messagingSenderId: "486312547143"
+      };
+      firebase.initializeApp(config);
+    </script>
   </body>
 </html>
