@@ -1,21 +1,27 @@
 <template>
-  <div>
-    <HeadComp></HeadComp>
-    <div>
-      <span>期限</span>
-      <textarea v-model="date"></textarea>
-    </div>
-    <div>
-      <span>タスク</span>
-      <textarea v-model="text"></textarea>
-    </div>
-    <button @click="setItems(text, date); CHANGE_INPUT({date: '', text: ''})">{{button}}</button>
-    <StringComp></StringComp>
-    <div>
+  <div style="display: flex; flex-flow: column; align-items: center">
+  <el-tabs type="card" @tab-click="handleClick" style="width: 50%">
+    <el-tab-pane label="入力">
+      <el-card>
+      <el-form>
+        <el-form-item style="margin: 0" label="期限" />
+        <el-input v-model="date" type="date"/>
+      </el-form>
+      <el-form style="margin-bottom: 2vh">
+        <el-form-item style="margin: 0" label="タスク" />
+        <el-input v-model="text" />
+      </el-form>
+      <el-button type="primary" @click="setItems(text, date); CHANGE_INPUT({date: '', text: ''})">{{button}}</el-button>
+      </el-card>
+    </el-tab-pane>
+    <el-tab-pane label="タスク">
+      <el-card>
       <div v-for="item in todos">
         {{`タスク：${item.text}　期限：${item.date}`}}
       </div>
-    </div>
+      </el-card>
+    </el-tab-pane>
+  </el-tabs>
   </div>
 </template>
 
