@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import ElementUI from 'element-ui'
 import router from '../router/index'
 import * as types from './mutation-types'
 
