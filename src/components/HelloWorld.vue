@@ -16,9 +16,19 @@
     </el-tab-pane>
     <el-tab-pane label="タスク">
       <el-card>
-      <div v-for="item in todos">
-        {{`タスク：${item.text}　期限：${item.date}`}}
-      </div>
+        <el-table
+          :data="todos"
+          style="width: 100%">
+          <el-table-column
+            prop="text"
+            label="Task">
+          </el-table-column>
+          <el-table-column
+            prop="date"
+            label="Date"
+            width="180">
+          </el-table-column>
+        </el-table>
       </el-card>
     </el-tab-pane>
   </el-tabs>
