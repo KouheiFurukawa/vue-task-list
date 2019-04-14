@@ -51,16 +51,28 @@ export default {
     }
   },
   mounted () {
-    this.todos = JSON.parse(localStorage.getItem('todos')) || [];
+    const config = {
+      apiKey: "AIzaSyBXEzRsVHyEzfquJb8riDoOjjBFsfzgelA",
+      authDomain: "vueapp-95ce4.firebaseapp.com",
+      databaseURL: "https://vueapp-95ce4.firebaseio.com",
+      projectId: "vueapp-95ce4",
+      storageBucket: "vueapp-95ce4.appspot.com",
+      messagingSenderId: "486312547143"
+    };
+    firebase.initializeApp(config);
+    const starCountRef = firebase.database().ref('todos');
+    starCountRef.on('value', (snapshot) => {
+      this.$store.state.todos = JSON.parse(snapshot.child('/').val()) || [];
+    });
   },
   methods: {
     ...mapActions([
       types.ADD_TASK,
       types.CHANGE_INPUT,
     ]),
-    setItems(text, date) {
-      this.todos.push({text, date});
-      localStorage.setItem('todos', JSON.stringify(this.todos));
+    writeUserData(text, date) {
+      this.$store.state.todos.push({text, date});
+      firebase.database().ref('todos').set(JSON.stringify(this.$store.state.todos));
     }
   },
 
